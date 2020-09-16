@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Form } from 'semantic-ui-react'
-import {loginSuccess } from '../../actions/auth'
+import {teacherLoginSuccess } from '../../actions/auth'
+import {studentLoginSuccess } from '../../actions/auth'
 
 class LoginPage extends Component {
     state = {
-        username: 'brennank',
-        password: 'brennank'
+        username: '',
+        password: '',
+        user_type: '',
+        error: null
     }
     
         handleChange = (e) => {
@@ -25,24 +27,43 @@ class LoginPage extends Component {
             },
             body: JSON.stringify(this.state)
         }
-        fetch('http://localhost:3001/api/v1/auth', reqObj)
-        .then(res => res.json())
-        .then(data => {console.log(data)
-        // if (data.error) {
-        //     this.setState({
-        //     error: data.error
-        //     })
-        // } else {
-        //     console.log(data)
-        //     this.props.loginSuccess(data.user)
-        //     //this.props.history.push('/dashboard')
-        // }
-        });
-    }
+        
+        if (this.state.user_type === "teacher"){
+            fetch('http://localhost:3001/api/v1/teacher_auth', reqObj)
+            .then(res => res.json())
+            .then(data => {
+            if (data.error) {
+                this.setState({
+                error: data.error
+                })
+            } else  {
+                console.log("teacherData", data)
+                this.props.teacherLoginSuccess(data)
+                this.props.history.push('/teacher_dash')
+            }
+        })
+
+        } else if (this.state.user_type === "student") {
+            fetch('http://localhost:3001/api/v1/student_auth', reqObj)
+            .then(res => res.json())
+            .then(data => {
+            if (data.error) {
+                this.setState({
+                error: data.error
+                })
+            } else {
+                console.log('studentData', data)
+                this.props.studentLoginSuccess(data)
+                this.props.history.push('/student_dash')
+            }
+            })
+        }}
+    
     render() {
         return (
             <div class="ui container">
                 <h2>Login to View Dashboard</h2>
+                {this.state.error ? <h3 style={{color: 'white', backgroundColor: 'red'}}>{this.state.error}</h3> : null}
                 <form onSubmit={this.handleSubmit}>
                 <div class="ui focus input">
                 <input fluid onChange={this.handleChange} type='text' name='username' placeholder='Username' value={this.state.username} />
@@ -55,15 +76,18 @@ class LoginPage extends Component {
                     <br/>
                     <br/>
                     <div class="ui focus input">
-                    <Form.Select
+                    <select 
+                        class="ui focus input"
                         fluid
+                        value={this.state.user_type} 
+                        name="user_type"
                         onChange={this.handleChange}
-                        placeholder='User Type'
-                        options={[
-                            { key: 'Teacher', text: 'Teacher', name: 'teacher', value: 'teacher' },
-                            { key: 'Student', text: 'Student', name: 'student', value: 'student' }
-                          ]}
-                    />
+                        placeholder='User Type' 
+                        >
+                        <option value="none">User Type</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                    </select>                        
                     </div>
                     <br/>
                     <br/>
@@ -72,11 +96,12 @@ class LoginPage extends Component {
                 </div>
     )
   }
-            
-};
+}           
+
 
 const mapDispatchToProps = {
-    loginSuccess,
+    teacherLoginSuccess,
+    studentLoginSuccess
   }
 
 export default connect(null, mapDispatchToProps)(LoginPage);

@@ -1,7 +1,14 @@
-export const loginSuccess = (user) => {
+export const teacherLoginSuccess = (teacher) => {
     return {
-        type: 'LOGIN_SUCCESS',
-        user
+        type: 'TEACHER_LOGIN_SUCCESS',
+        teacher
+    }
+}
+
+export const studentLoginSuccess = (student) => {
+    return {
+        type: 'STUDENT_LOGIN_SUCCESS',
+        student
     }
 }
 
