@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {teacherLoginSuccess } from '../../actions/auth'
 import {studentLoginSuccess } from '../../actions/auth'
+import { Redirect } from 'react-router-dom'
+
+
 
 class LoginPage extends Component {
     state = {
@@ -37,8 +40,10 @@ class LoginPage extends Component {
                 error: data.error
                 })
             } else  {
-                console.log("teacherData", data)
-                this.props.teacherLoginSuccess(data)
+                console.log(data)
+                this.props.teacherLoginSuccess(data.teacher)
+                
+                
                 this.props.history.push('/teacher_dash')
             }
         })
@@ -52,8 +57,9 @@ class LoginPage extends Component {
                 error: data.error
                 })
             } else {
-                console.log('studentData', data)
                 this.props.studentLoginSuccess(data)
+                console.log(this.props)
+                
                 this.props.history.push('/student_dash')
             }
             })

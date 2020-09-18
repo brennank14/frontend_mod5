@@ -8,9 +8,18 @@ export const teacherLoginSuccess = (teacher) => {
 export const studentLoginSuccess = (student) => {
     return {
         type: 'STUDENT_LOGIN_SUCCESS',
-        student
+        student: student
     }
 }
+
+export const loadStudentQuestions = questions => {
+    return {
+        type: "LOAD_STUDENT_QUESTIONS",
+        questions
+    }
+}
+
+
 
 // export const logoutSuccess = () => {
 //     return {
