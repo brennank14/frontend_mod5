@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { loadStudentQuestions } from '../../actions/auth'
+import { loadQuestions } from '../../actions/auth'
 import StudentQuestionContainer from './StudentQuestionContainer'
 
 
@@ -10,32 +10,38 @@ class StudentDash extends Component {
     }
 
     componentDidMount() {
+        
         if (!this.props.auth){
             this.props.history.push('/login')
           }
 
           fetch('http://localhost:3001/questions')
           .then(res => res.json())
-          .then(data => 
-              this.props.loadStudentQuestions(data.questions))
-              //this.setState({studentQuestions: data.questions.filter(q => q.teacher_id === this.props.auth.teacher_id)}))
+          .then(data => {
+              this.props.loadQuestions(data.questions)
+              this.setState({studentQuestions: data.questions.filter(q => q.teacher_id === this.props.auth.teacher_id)})
           }
+          )}
+
+
+
         
     renderQuestions = () => {
         
-        // return this.state.studentQuestions.map(q => (
-        //     <StudentQuestionContainer
-        //         key={q.id}
-        //         teacher_id={q.teacher_id}
-        //         name={q.name}
-        //         content={q.content}
-        //         points={q.points}
-        //         id={q.id}
-        //   />
-        // ))
+        return this.state.studentQuestions.map(q => (
+            <StudentQuestionContainer
+                key={q.id}
+                teacher_id={q.teacher_id}
+                name={q.name}
+                content={q.content}
+                points={q.points}
+                id={q.id}
+          />
+        ))
         }
 
     render() {
+        console.log(this.state.studentQuestions)
         return (
             <div>
                 <h1>Welcome, {this.props.auth.name}</h1>
@@ -54,7 +60,7 @@ const mapStateToProps = (state) => {
   }
 
 const mapDispatchToProps = {
-    loadStudentQuestions,
+    loadQuestions,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDash);

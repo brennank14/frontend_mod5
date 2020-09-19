@@ -19,6 +19,13 @@ export const loadStudentQuestions = questions => {
     }
 }
 
+export const loadQuestions = questions => {
+    return {
+        type: "LOAD_QUESTIONS",
+        questions
+    }
+  }
+
 
 
 // export const logoutSuccess = () => {

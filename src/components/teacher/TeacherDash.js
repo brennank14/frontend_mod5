@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { loadQuestions } from '../../actions/teacher_actions'
+import { loadQuestions } from '../../actions/auth'
 import TeacherQuestionContainer from './TeacherQuestionContainer'
 import { Button, Card, Container, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'

@@ -5,11 +5,7 @@ export default function questionReducer(state = [], action)
         case "LOAD_QUESTIONS":
             return [...action.questions]
 
-        // case "LOAD_STUDENT_QUESTIONS":
-        //     console.log(action.questions)
-        //     console.log('auth', state.auth)
-        //     console.log('student', state.student)
-        //     return [action.questions.filter(q => q.teacher_id === state.auth.teacher_id )]
+
 
 
 

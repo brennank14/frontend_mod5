@@ -8,9 +8,9 @@ import { Redirect } from 'react-router-dom'
 
 class LoginPage extends Component {
     state = {
-        username: '',
-        password: '',
-        user_type: '',
+        username: 'Sarah',
+        password: 'burke',
+        user_type: 'student',
         error: null
     }
     

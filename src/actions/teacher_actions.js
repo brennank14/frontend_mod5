@@ -1,9 +1,4 @@
-export const loadQuestions = questions => {
-    return {
-        type: "LOAD_QUESTIONS",
-        questions
-    }
-  }
+
 
 
 export const addQuestion = question => {

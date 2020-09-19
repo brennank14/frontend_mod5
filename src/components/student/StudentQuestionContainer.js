@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { loadQuestions } from '../../actions/teacher_actions'
-import { Button, Card, Container, Image } from 'semantic-ui-react'
+import { Card, Container, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 class StudentQuestionContainer extends Component {
     
-    
-    
-    
-    
+    handleClick = () => {
+        
+    }
     
     render() {
         return (
             <div>
-                <Container>
+                <Container >
                 <Card.Group>
-                <Card>
+                <Link to={`/question/${this.props.id}`} >
+                <Card onClick={this.handleClick}>
                     <Card.Content>
                         <Image
                         floated='right'
@@ -27,6 +27,7 @@ class StudentQuestionContainer extends Component {
                         </Card.Description>
                     </Card.Content>
                     </Card>
+                    </Link>
                     </Card.Group>
                 </Container>
             </div>
