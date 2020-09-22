@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Card, Container, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { deleteQuestion } from '../../actions/teacher_actions'
 import { Link } from 'react-router-dom'
 
 
@@ -57,7 +56,7 @@ class TeacherQuestionContainer extends Component {
 
 
 const mapDispatchToProps = {
-    deleteQuestion,
+   
 }
 
 export default connect(null, mapDispatchToProps)(TeacherQuestionContainer);

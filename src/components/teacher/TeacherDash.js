@@ -49,7 +49,6 @@ class TeacherDash extends Component {
 const mapStateToProps = (state) => {
     return {
       auth: state.auth,
-      teacher: state.teacher
     }
   }
 

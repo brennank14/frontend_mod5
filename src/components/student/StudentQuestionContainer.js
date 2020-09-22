@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { Card, Container, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import {  connect } from 'react-redux'
 
 class StudentQuestionContainer extends Component {
     
-    handleClick = () => {
-        
-    }
-    
+
+
     render() {
         return (
             <div>
-                <Container >
+                <Container>
                 <Card.Group>
                 <Link to={`/question/${this.props.id}`} >
-                <Card onClick={this.handleClick}>
+                <Card>
                     <Card.Content>
                         <Image
                         floated='right'
@@ -35,4 +34,14 @@ class StudentQuestionContainer extends Component {
     }
 }
 
-export default StudentQuestionContainer;
+const mapStateToProps = (state) => {
+    return {
+      auth: state.auth,
+    }
+  }
+
+const mapDispatchToProps = {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentQuestionContainer);

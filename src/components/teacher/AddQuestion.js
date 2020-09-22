@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addQuestion } from '../../actions/teacher_actions'
+import { addQuestion } from '../../actions/auth'
 import { Button, Form, Container, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
@@ -66,7 +66,9 @@ class AddQuestion extends Component {
 }
 
 const mapStateToProps = state => {
-    return { teacher: state.teacher }
+    return {
+        auth: state.auth,
+      }
 }
 
 const mapDispatchToProps = {

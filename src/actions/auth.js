@@ -5,6 +5,13 @@ export const teacherLoginSuccess = (teacher) => {
     }
 }
 
+export const addQuestion = question => {
+    return {
+        type: "ADD_QUESTION",
+        question
+    }
+}
+
 export const studentLoginSuccess = (student) => {
     return {
         type: 'STUDENT_LOGIN_SUCCESS',
@@ -12,10 +19,10 @@ export const studentLoginSuccess = (student) => {
     }
 }
 
-export const loadStudentQuestions = questions => {
+export const loadStudentQuestions = student_questions => {
     return {
         type: "LOAD_STUDENT_QUESTIONS",
-        questions
+        student_questions
     }
 }
 
@@ -26,7 +33,12 @@ export const loadQuestions = questions => {
     }
   }
 
-
+  export const answerQuestion = student_question => {
+    return {
+        type: "ANSWER_QUESTION",
+        student_question
+    }
+  }
 
 // export const logoutSuccess = () => {
 //     return {

@@ -1,50 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { loadQuestions } from '../../actions/auth'
+import { loadStudentQuestions } from '../../actions/auth'
 import StudentQuestionContainer from './StudentQuestionContainer'
 
 
 class StudentDash extends Component {
     state = {
-        studentQuestions: []
+        studentQuestions: [],
     }
 
     componentDidMount() {
         
-        if (!this.props.auth){
-            this.props.history.push('/login')
-          }
+        // if (!this.props.auth){
+        //     this.props.history.push('/login')
+        //   }
 
-          fetch('http://localhost:3001/questions')
-          .then(res => res.json())
-          .then(data => {
-              this.props.loadQuestions(data.questions)
-              this.setState({studentQuestions: data.questions.filter(q => q.teacher_id === this.props.auth.teacher_id)})
-          }
-          )}
-
-
-
+        //   fetch(`http://localhost:3001/students/${this.props.auth.student.id}`)
+        //   .then(res => res.json())
+        //   .then(data => {
+        //       console.log(data.student.student_questions)
+        //       //this.props.loadStudentQuestions(data.student.student_questions)
+        //   }
+        //   )
+    }
         
     renderQuestions = () => {
-        
-        return this.state.studentQuestions.map(q => (
+        //console.log(this.props.auth.student.student_questions)
+        return this.props.auth.student.student_questions.map(q => (
             <StudentQuestionContainer
                 key={q.id}
-                teacher_id={q.teacher_id}
-                name={q.name}
-                content={q.content}
-                points={q.points}
-                id={q.id}
+                teacher_id={q.question.teacher_id}
+                name={q.question.name}
+                content={q.question.content}
+                points={q.question.points}
+                id={q.question.id}
           />
         ))
-        }
-
+    }
+    
     render() {
-        console.log(this.state.studentQuestions)
         return (
             <div>
-                <h1>Welcome, {this.props.auth.name}</h1>
+                <h1>Welcome, {this.props.auth.student.name}</h1>
                 <h2>Assignments:</h2>
                 <div className="ui items" >{this.renderQuestions()}</div>
             </div>
@@ -55,12 +52,11 @@ class StudentDash extends Component {
 const mapStateToProps = (state) => {
     return {
       auth: state.auth,
-      question: state.question
     }
   }
 
 const mapDispatchToProps = {
-    loadQuestions,
+    loadStudentQuestions,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDash);

@@ -22,7 +22,6 @@ class LoginPage extends Component {
     
         handleSubmit = (e) => {
         e.preventDefault()
-    
         const reqObj = {
             method: 'POST', 
             headers: {
@@ -42,8 +41,6 @@ class LoginPage extends Component {
             } else  {
                 console.log(data)
                 this.props.teacherLoginSuccess(data.teacher)
-                
-                
                 this.props.history.push('/teacher_dash')
             }
         })
@@ -58,7 +55,6 @@ class LoginPage extends Component {
                 })
             } else {
                 this.props.studentLoginSuccess(data)
-                console.log(this.props)
                 
                 this.props.history.push('/student_dash')
             }
