@@ -16,6 +16,8 @@ export default function authReducer(state = null, action)
 
         case "ANSWER_QUESTION":
             return {...state, answer: action.answer}
+        case "GRADE_QUESTION":
+            return {...state, grade: action.grade, feedback: action.feedback}
 
         default:
             return state;    

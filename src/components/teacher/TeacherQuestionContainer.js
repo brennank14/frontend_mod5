@@ -23,7 +23,7 @@ class TeacherQuestionContainer extends Component {
         return (
             <div>
                 <Container>
-                    <Card.Group horizontal>
+                    <Card.Group>
                         <Card>
                             <Card.Content>
                                 <Image

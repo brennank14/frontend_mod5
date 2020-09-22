@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Grid, Segment, Container, Header, Form, TextArea, Card, Input, Button } from 'semantic-ui-react'
+import { Grid, Segment, Container, Header, Form, TextArea, Input, Button } from 'semantic-ui-react'
+import { gradeQuestion } from '../../actions/auth'
 
 class ViewStudentAnswer extends Component {
     state = {
-        question: null
+        question: null,
+        studentQuestion: null,
+        feedback: '',
+        grade: null
     }
     
     componentDidMount() {
@@ -19,13 +23,57 @@ class ViewStudentAnswer extends Component {
         .then(data => {
            this.setState({question: data.question})
         })
+        
+        this.setStudentQuestion()
+
+    }
+
+    setStudentQuestion = () => {
+        this.setState({
+            studentQuestion: this.props.location.studentProps.studentQuestion
+        })
     }
     
+
+
+    handleChange = (event) => {
+        console.log('change')
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+
+    handleSubmit = event => {
+        event.preventDefault()
+        console.log('sumbit', this.state.feedback)
+        const reqObj = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                feedback: this.state.feedback,
+                grade: this.state.grade
+            }
+            )}
+        
+        fetch(`http://localhost:3001/student_questions/${this.state.studentQuestion.id}`, reqObj)
+        .then(resp => resp.json())
+        .then(data => {
+            console.log("data", data)
+            this.props.gradeQuestion(data)
+            this.props.history.push(`/view_student_dash/${this.props.location.studentProps.studentId}`)
+        })
+    }
+
+
+
     render() {
-        console.log('state', this.state.question)
         if (!this.state.question){
             return <h4>loading...</h4>
         }
+        console.log(this.props)
         return (
             <div> 
                    <Container>
@@ -34,49 +82,53 @@ class ViewStudentAnswer extends Component {
                      <Grid.Row stretched>
                      <Grid.Column width={7}>
                          <Segment>
-                         <Card>
-                         <Card.Content>
-                             <Card.Header>{this.state.question.name}</Card.Header>
-                                 <Card.Description>
-                                     {this.state.question.content}
-                                 </Card.Description>
-                             </Card.Content>
-                         </Card>
+                                <h3>{this.state.question.name}</h3>
+                                <h4>{this.state.question.content}</h4>
+ 
                          </Segment>
                      </Grid.Column>
                      <Grid.Column width={9}>
-                         <Segment>Answer:  
-                                [current student answer]
+                         <Segment>Answer:
+                             <br/>  
+                                <p>{this.state.studentQuestion.answer}</p>
                              </Segment>
                      </Grid.Column>
                      </Grid.Row>
                      <Grid.Row stretched>
-                     <Grid.Column width={2}>
+                     <Grid.Column width={3}>
                          <Segment>Grade
                          <Form>
-                         <Input />
+                             <Input type='text' value={this.state.grade} name='grade' onChange={this.handleChange} />
                          </Form>
                          </Segment>
                      </Grid.Column>
-                     <Grid.Column width={14}>
+                     <Grid.Column width={13}>
                          <Segment>Feedback
-                         <Form>
-                         <TextArea />
+                         <Form onSubmit={this.handleSubmit}>
+                             <TextArea type='text' value={this.state.feedback} name='feedback' onChange={this.handleChange} />
+                             <br/>
+                             <Button type='submit'>Submit</Button>
                          </Form>
                          </Segment>
                      </Grid.Column>
                      </Grid.Row>
                  </Grid>
                  <br/>
-                 <Button type='submit'>Submit</Button>
                  </Container>
              </div>
         );
     }
 }
 
-const mapDispatchToProps = {
 
+const mapStateToProps = (state) => {
+    return {
+      auth: state.auth,
+    }
+  }
+
+const mapDispatchToProps = {
+    gradeQuestion
 }
 
-export default connect(null, mapDispatchToProps)(ViewStudentAnswer)
+export default connect(mapStateToProps, mapDispatchToProps)(ViewStudentAnswer)

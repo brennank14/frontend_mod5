@@ -40,6 +40,13 @@ export const loadQuestions = questions => {
     }
   }
 
+  export const gradeQuestion = student_question => {
+    return {
+        type: "GRADE_QUESTION",
+        student_question
+    }
+  }
+
 // export const logoutSuccess = () => {
 //     return {
 //       type: 'LOGOUT_SUCCESS'

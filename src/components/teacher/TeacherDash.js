@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { loadQuestions } from '../../actions/auth'
 import TeacherQuestionContainer from './TeacherQuestionContainer'
-import StudentContainer from './StudentContainer'
-import { Button, Card, Container, Image } from 'semantic-ui-react'
+import { Button, Card, Container, Image, List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class TeacherDash extends Component {
@@ -33,12 +32,24 @@ class TeacherDash extends Component {
 
 
     renderStudents = () => {
-        return this.props.auth.students.map(s => (
-            <StudentContainer
-                key={s.id}
-                name={s.name}
-                id={s.id}
-          />
+        console.log(this.props)
+        return this.props.auth.students.map(s => (            
+            <div>
+                <List divided relaxed>
+                <div>
+                <Link  to={{
+                        pathname:`/view_student_dash/${s.id}`, 
+                        studentProps:{currentStudent: s.id}}} >
+                    <List.Item>
+                    <List.Icon name='user circle' size='large' verticalAlign='right' />
+                    <List.Content>
+                        <List.Header as='a'>{s.name}</List.Header>
+                    </List.Content>
+                    </List.Item>
+                </Link>
+                </div>
+                </List>
+            </div>
         ))
     }
 

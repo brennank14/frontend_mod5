@@ -25,11 +25,7 @@ class QuestionPage extends Component {
            this.setState({question: data.question})          
         })
 
-        // console.log(this.props)
-        // console.log(this.props.auth.student.student_questions)
-        // console.log(this.props.match.params.id)
         const question = this.props.auth.student.student_questions.filter(q => (q.question_id == this.props.match.params.id))
-        // console.log(question[0].id)
         this.setState({studentQuestionId: question[0].id}) 
     }
 
