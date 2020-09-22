@@ -3,6 +3,7 @@ import './App.css';
 import LoginPage from './components/login/LoginPage';
 import TeacherDash from './components/teacher/TeacherDash';
 import ViewStudentAnswer from './components/teacher/ViewStudentAnswer';
+import ViewStudentDash from './components/teacher/ViewStudentDash';
 import AddQuestion from './components/teacher/AddQuestion';
 import StudentDash from './components/student/StudentDash';
 import QuestionPage from './components/student/QuestionPage';
@@ -22,6 +23,7 @@ const App = () => {
         <Route exact path='/add_question' component={AddQuestion} />
         <Route exact path='/grade/:id' component={ViewStudentAnswer} />
         <Route exact path='/question/:id' component={QuestionPage} />
+        <Route exact path='/view_student_dash/:id' component={ViewStudentDash} />
         <Route exact path='/' component={LoginPage} />
       </Switch>
     </div>

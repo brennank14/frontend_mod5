@@ -23,7 +23,7 @@ class TeacherQuestionContainer extends Component {
         return (
             <div>
                 <Container>
-                    <Card.Group>
+                    <Card.Group horizontal>
                         <Card>
                             <Card.Content>
                                 <Image
@@ -54,9 +54,15 @@ class TeacherQuestionContainer extends Component {
     }
 }
 
-
-const mapDispatchToProps = {
-   
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
 }
 
-export default connect(null, mapDispatchToProps)(TeacherQuestionContainer);
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeacherQuestionContainer);

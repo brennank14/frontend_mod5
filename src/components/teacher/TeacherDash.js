@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { loadQuestions } from '../../actions/auth'
 import TeacherQuestionContainer from './TeacherQuestionContainer'
+import StudentContainer from './StudentContainer'
 import { Button, Card, Container, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
@@ -30,17 +31,29 @@ class TeacherDash extends Component {
         ))
     }
 
+
+    renderStudents = () => {
+        return this.props.auth.students.map(s => (
+            <StudentContainer
+                key={s.id}
+                name={s.name}
+                id={s.id}
+          />
+        ))
+    }
+
     
     render() {
         return (
             <div>
-                <h1>Welcome, {this.props.teacher.name}</h1>
+                <h1>Welcome, {this.props.auth.name}</h1>
                 <div id='listHeading'>
                      
                      <button class="ui button"><Link to="/add_question">Add New Question</Link></button>
                 </div>
                 <h2>Assignments:</h2>
                 <div className="ui items" >{this.renderQuestions()}</div>
+                <div className="ui items" >{this.renderStudents()}</div>
             </div>
         );
     }
