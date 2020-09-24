@@ -7,8 +7,8 @@ class AddQuestion extends Component {
     state = {
         name: '',
         content: '',
-        points: null,
-        grade: null,
+        points: '',
+        grade: '',
         feedback: '',
         student_id: null,
         teacher_id: this.props.auth.id
@@ -23,7 +23,7 @@ class AddQuestion extends Component {
     
     
     handleSubmit = event => {
-        event.preventDefault()
+        event.preventDefault()               
         const reqObjOne = {
             method: "POST",
             headers: {
@@ -41,31 +41,10 @@ class AddQuestion extends Component {
         .then(resp => resp.json())
         .then(data => {
             this.props.addQuestion(data.question)
+            this.props.history.push('/teacher_dash')
         })
     
-        // const reqObjTwo
-        // const array = this.state.auth.students
-        // array.map(s => {
-        // reqObjTwo = {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         grade: this.state.grade,
-        //         feedback: this.state.feedback,
-        //         teacher_id: this.props.auth.id,
-        //         student_id: s.id
-        //     }
-        // )}
-        // fetch(`http://localhost:3001/student_questions`, reqObjTwo)
-        // .then(resp => resp.json())
-        // .then(data => {
-        //     console.log('data', data)
-        //     this.props.addQuestion(data.question)
 
-        this.props.history.push('/teacher_dash')
-        // })})
     }
     
 

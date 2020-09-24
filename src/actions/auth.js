@@ -54,6 +54,20 @@ export const loadQuestions = questions => {
     }
   }
 
+  export const deleteQuestion = id => {
+    return {
+        type: "DELETE_QUESTION",
+        id
+    }
+  }
+
+//   export const deleteStudentQuestion = studentQuestion => {
+//     return {
+//         type: "DELETE_STUDENT_QUESTION",
+//         studentQuestion
+//     }
+//   }
+
 // export const logoutSuccess = () => {
 //     return {
 //       type: 'LOGOUT_SUCCESS'

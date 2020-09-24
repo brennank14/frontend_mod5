@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Card, Container, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { deleteQuestion } from '../../actions/auth'
 
 
 class TeacherQuestionContainer extends Component {
@@ -10,21 +11,24 @@ class TeacherQuestionContainer extends Component {
     }
     
     handleDelete = () => {
+        console.log('props', this.props)
         fetch(`http://localhost:3001/questions/${this.props.id}`, {
             method: 'DELETE', 
             headers: {
                 "Content-Type": "application/json"}})
         .then(resp => {
+            console.log('delete', this.props)
           this.props.deleteQuestion(this.props.id)
         })
       }
+
 
     render() {
         return (
             <div>
                 <Container>
-                    <Card.Group>
-                        <Card>
+                    <Card.Group >
+                        <Card class="ui card">
                             <Card.Content>
                                 <Image
                                 floated='right'
@@ -62,7 +66,7 @@ const mapStateToProps = (state) => {
 
 
 const mapDispatchToProps = {
-
+    deleteQuestion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeacherQuestionContainer);

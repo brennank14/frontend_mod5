@@ -22,8 +22,14 @@ export default function authReducer(state = null, action)
         case "ANSWER_QUESTION":
             return {...state, answer: action.answer}
 
-            case "GRADE_QUESTION":
+        case "GRADE_QUESTION":
             return {...state, grade: action.grade, feedback: action.feedback}
+
+        // case "DELETE_STUDENT_QUESTION":
+        //     return state.filter(studentQuestion => studentQuestion.id !== action.id);
+
+        case "DELETE_QUESTION":
+            return {...state, questions: [...state.questions.filter(question => question.id !== action.id)]}
 
         default:
             return state;    

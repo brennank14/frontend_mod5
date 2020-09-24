@@ -7,7 +7,9 @@ import { answerQuestion } from '../../actions/auth'
 class QuestionPage extends Component {
     state = {
         question: this.props.question,
-        answer: '',
+        answer: this.state.answer,
+        grade: this.state.grade,
+        feedback: this.state.feedback,
         studentQuestionId: null
     }
     
@@ -31,17 +33,12 @@ class QuestionPage extends Component {
         
     }
 
-
-
-f
-
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-    
-
+     
     handleSubmit = event => {
         event.preventDefault()
         console.log(this.props)
@@ -97,10 +94,15 @@ f
                      </Grid.Row>
                      <Grid.Row stretched>
                      <Grid.Column width={2}>
-                         <Segment>Grade</Segment>
+                         <Segment>Grade
+                         <Form.Input fluid value={this.state.grade} readOnly />
+                         </Segment>
+                         
                      </Grid.Column>
                      <Grid.Column width={14}>
-                         <Segment>Feedback</Segment>
+                         <Segment>Feedback
+                         <Form.Input fluid value={this.state.feedback} readOnly />
+                         </Segment>
                      </Grid.Column>
                      </Grid.Row>
                  </Grid>

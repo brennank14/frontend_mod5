@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Grid, Segment, Container, Header, Form, TextArea, Input, Button } from 'semantic-ui-react'
+import { Grid, Segment, Container, Header, Form, TextArea, Input, Button, } from 'semantic-ui-react'
 import { gradeQuestion } from '../../actions/auth'
 
 class ViewStudentAnswer extends Component {
@@ -8,10 +8,13 @@ class ViewStudentAnswer extends Component {
         question: null,
         studentQuestion: null,
         feedback: '',
-        grade: null
+        grade: null,
+        graded: false
     }
     
     componentDidMount() {
+        console.log('state', this.state)
+        console.log('props', this.props)
         fetch(`http://localhost:3001/questions/${this.props.match.params.question_id}`, {
             method: "GET",
             headers: {
@@ -42,6 +45,12 @@ class ViewStudentAnswer extends Component {
         })
     }
 
+    handleChecked = () =>{
+        this.setState({
+            graded: true
+        })
+    }
+
 
     handleSubmit = event => {
         event.preventDefault()
@@ -52,7 +61,8 @@ class ViewStudentAnswer extends Component {
             },
             body: JSON.stringify({
                 feedback: this.state.feedback,
-                grade: this.state.grade
+                grade: this.state.grade,
+                graded: this.state.graded
             }
             )}
         
@@ -95,6 +105,7 @@ class ViewStudentAnswer extends Component {
                          <Segment>Grade
                          <Form>
                              <Input type='text' value={this.state.grade} name='grade' onChange={this.handleChange} />
+                             <Form.Checkbox onCheck={this.handleChecked} label='Graded' />
                          </Form>
                          </Segment>
                      </Grid.Column>
