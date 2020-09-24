@@ -12,6 +12,13 @@ export const addQuestion = question => {
     }
 }
 
+export const addStudentQuestion = question => {
+    return {
+        type: "ADD_STUDENT_QUESTION",
+        question
+    }
+}
+
 export const studentLoginSuccess = (student) => {
     return {
         type: 'STUDENT_LOGIN_SUCCESS',

@@ -38,7 +38,7 @@ class TeacherDash extends Component {
                 <List divided relaxed>
                 <div>
                 <Link  to={{
-                        pathname:`/view_student_dash/${s.id}`, 
+                        pathname:`/view_student/${s.id}`, 
                         studentProps:{currentStudent: s.id}}} >
                     <List.Item>
                     <List.Icon name='user circle' size='large' verticalAlign='right' />

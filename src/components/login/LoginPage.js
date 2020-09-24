@@ -8,9 +8,9 @@ import { Redirect } from 'react-router-dom'
 
 class LoginPage extends Component {
     state = {
-        username: 'brennank',
-        password: 'brennank',
-        user_type: 'teacher',
+        username: '',
+        password: '',
+        user_type: '',
         error: null
     }
     
@@ -95,6 +95,11 @@ class LoginPage extends Component {
                     <br/>
                     <input focus class="ui button" type='submit' />
                 </form>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div id="ggb-element"></div>
                 </div>
     )
   }

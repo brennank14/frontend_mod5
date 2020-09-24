@@ -12,7 +12,7 @@ class ViewStudentAnswer extends Component {
     }
     
     componentDidMount() {
-        fetch(`http://localhost:3001/questions/${this.props.match.params.id}`, {
+        fetch(`http://localhost:3001/questions/${this.props.match.params.question_id}`, {
             method: "GET",
             headers: {
               "access-control-allow-origin" : "*",
@@ -37,7 +37,6 @@ class ViewStudentAnswer extends Component {
 
 
     handleChange = (event) => {
-        console.log('change')
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -46,7 +45,6 @@ class ViewStudentAnswer extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        console.log('sumbit', this.state.feedback)
         const reqObj = {
             method: "PATCH",
             headers: {
@@ -61,9 +59,8 @@ class ViewStudentAnswer extends Component {
         fetch(`http://localhost:3001/student_questions/${this.state.studentQuestion.id}`, reqObj)
         .then(resp => resp.json())
         .then(data => {
-            console.log("data", data)
             this.props.gradeQuestion(data)
-            this.props.history.push(`/view_student_dash/${this.props.location.studentProps.studentId}`)
+            this.props.history.push(`/view_student/${this.props.location.studentProps.studentId}`)
         })
     }
 
@@ -73,7 +70,6 @@ class ViewStudentAnswer extends Component {
         if (!this.state.question){
             return <h4>loading...</h4>
         }
-        console.log(this.props)
         return (
             <div> 
                    <Container>
@@ -115,6 +111,7 @@ class ViewStudentAnswer extends Component {
                  </Grid>
                  <br/>
                  </Container>
+                  
              </div>
         );
     }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Segment, Container, Header, Form, TextArea, Card, Button } from 'semantic-ui-react'
+import { Grid, Segment, Container, Header, Form, TextArea, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import StudentQuestionContainer from './StudentQuestionContainer'
 import { answerQuestion } from '../../actions/auth'
+
 
 class QuestionPage extends Component {
     state = {
@@ -27,6 +27,8 @@ class QuestionPage extends Component {
 
         const question = this.props.auth.student.student_questions.filter(q => (q.question_id == this.props.match.params.id))
         this.setState({studentQuestionId: question[0].id}) 
+
+        
     }
 
 
@@ -34,7 +36,6 @@ class QuestionPage extends Component {
 f
 
     handleChange = (event) => {
-        console.log('change')
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -58,7 +59,6 @@ f
         fetch(`http://localhost:3001/student_questions/${this.state.studentQuestionId}`, reqObj)
         .then(resp => resp.json())
         .then(data => {
-            console.log("data", data)
             this.props.answerQuestion(data)
             this.props.history.push('/student_dash')
         })
@@ -66,15 +66,15 @@ f
 
 
     render() {
-        console.log('state', this.state)
         if (!this.state.question){
             return <h4>loading...</h4>
         }
         return (
             <div> 
+                
                    <Container>
                    <Header as='h1' textAlign='left'>Question Name</Header>
-                         <div id="ggb-element"></div>
+                   <div id="ggb-element"></div> 
                          <br/>
                    <Grid columns={2} divided>
                      <Grid.Row stretched>

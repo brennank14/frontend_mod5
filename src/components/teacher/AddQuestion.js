@@ -8,7 +8,10 @@ class AddQuestion extends Component {
         name: '',
         content: '',
         points: null,
-        teacher_id: this.props.teacher.id
+        grade: null,
+        feedback: '',
+        student_id: null,
+        teacher_id: this.props.auth.id
     }
     
     
@@ -21,8 +24,7 @@ class AddQuestion extends Component {
     
     handleSubmit = event => {
         event.preventDefault()
-        console.log("submit props", this.props)
-        const reqObj = {
+        const reqObjOne = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,19 +32,42 @@ class AddQuestion extends Component {
             body: JSON.stringify({
                 name: this.state.name,
                 content: this.state.content,
-                teacher_id: this.props.teacher.id,
+                teacher_id: this.props.auth.id,
                 points: this.state.points
             }
             )}
-        
-        fetch(`http://localhost:3001/questions`, reqObj)
+
+        fetch(`http://localhost:3001/questions`, reqObjOne)
         .then(resp => resp.json())
         .then(data => {
-            console.log("data", data)
             this.props.addQuestion(data.question)
-            this.props.history.push('/teacher_dash')
         })
+    
+        // const reqObjTwo
+        // const array = this.state.auth.students
+        // array.map(s => {
+        // reqObjTwo = {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         grade: this.state.grade,
+        //         feedback: this.state.feedback,
+        //         teacher_id: this.props.auth.id,
+        //         student_id: s.id
+        //     }
+        // )}
+        // fetch(`http://localhost:3001/student_questions`, reqObjTwo)
+        // .then(resp => resp.json())
+        // .then(data => {
+        //     console.log('data', data)
+        //     this.props.addQuestion(data.question)
+
+        this.props.history.push('/teacher_dash')
+        // })})
     }
+    
 
 
     render() {

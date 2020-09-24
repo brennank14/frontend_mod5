@@ -21,9 +21,9 @@ const App = () => {
         <Route exact path='/student_dash' component={StudentDash} />
         <Route exact path='/teacher_dash' component={TeacherDash} />
         <Route exact path='/add_question' component={AddQuestion} />
-        <Route exact path='/grade/:id' component={ViewStudentAnswer} />
         <Route exact path='/question/:id' component={QuestionPage} />
-        <Route exact path='/view_student_dash/:id' component={ViewStudentDash} />
+        <Route exact path='/view_student/:student_id' component={ViewStudentDash} />
+        <Route exact path='/view_student/:student_id/question/:question_id' component={ViewStudentAnswer} />
         <Route exact path='/' component={LoginPage} />
       </Switch>
     </div>
