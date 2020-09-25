@@ -17,7 +17,6 @@ class TeacherQuestionContainer extends Component {
             headers: {
                 "Content-Type": "application/json"}})
         .then(resp => {
-            console.log('delete', this.props)
           this.props.deleteQuestion(this.props.id)
         })
       }

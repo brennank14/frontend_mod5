@@ -10,7 +10,8 @@ class AddQuestion extends Component {
         points: '',
         grade: '',
         feedback: '',
-        student_id: null,
+        answer: '',
+        graded: null,
         teacher_id: this.props.auth.id
     }
     
@@ -33,13 +34,18 @@ class AddQuestion extends Component {
                 name: this.state.name,
                 content: this.state.content,
                 teacher_id: this.props.auth.id,
-                points: this.state.points
-            }
-            )}
-
+                points: this.state.points,
+                grade: this.state.grade,
+                feedback: this.state.feedback,
+                answer: this.state.answer,
+                graded: false
+            })
+        }
+           
         fetch(`http://localhost:3001/questions`, reqObjOne)
         .then(resp => resp.json())
         .then(data => {
+            console.log(data)
             this.props.addQuestion(data.question)
             this.props.history.push('/teacher_dash')
         })

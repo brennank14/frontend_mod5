@@ -18,6 +18,7 @@ class TeacherDash extends Component {
     }
         
     renderQuestions = () => {
+        console.log('props', this.props)
         return this.props.auth.questions.map(q => (
             <TeacherQuestionContainer
                 key={q.id}
@@ -32,7 +33,6 @@ class TeacherDash extends Component {
 
 
     renderStudents = () => {
-        console.log(this.props)
         return this.props.auth.students.map(s => (            
             <div>
                 <List divided relaxed>
