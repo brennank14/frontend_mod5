@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {teacherLoginSuccess } from '../../actions/auth'
-import {studentLoginSuccess } from '../../actions/auth'
-import { Redirect } from 'react-router-dom'
-
+import { teacherLoginSuccess } from '../../actions/auth'
+import { studentLoginSuccess } from '../../actions/auth'
 
 
 class LoginPage extends Component {
@@ -25,9 +23,21 @@ class LoginPage extends Component {
         const reqObj = {
             method: 'POST', 
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer <token>`
             },
-            body: JSON.stringify(this.state)
+            body: JSON.stringify({teacher:
+                this.state})
+        }
+
+        const reqObjTwo = {
+            method: 'POST', 
+            headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer <token>`
+            },
+            body: JSON.stringify({student:
+                this.state})
         }
         
         if (this.state.user_type === "teacher"){
@@ -39,14 +49,14 @@ class LoginPage extends Component {
                 error: data.error
                 })
             } else  {
-                console.log(data)
-                this.props.teacherLoginSuccess(data.teacher)
+                localStorage.setItem('myAppToken', data.token)
+                this.props.teacherLoginSuccess(data.teacher.teacher)
                 this.props.history.push('/teacher_dash')
             }
         })
 
         } else if (this.state.user_type === "student") {
-            fetch('http://localhost:3001/api/v1/student_auth', reqObj)
+            fetch('http://localhost:3001/api/v1/student_auth', reqObjTwo)
             .then(res => res.json())
             .then(data => {
             if (data.error) {
@@ -54,8 +64,8 @@ class LoginPage extends Component {
                 error: data.error
                 })
             } else {
-                this.props.studentLoginSuccess(data)
-                
+                localStorage.setItem('myAppToken', data.token)
+                this.props.studentLoginSuccess(data.student.student)
                 this.props.history.push('/student_dash')
             }
             })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { addQuestion } from '../../actions/auth'
+import { addStudentQuestion } from '../../actions/auth'
 import { Button, Form, Container, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
@@ -42,6 +43,11 @@ class AddQuestion extends Component {
             })
         }
            
+        console.log(this.props)
+        this.props.auth.students.map(s => {
+            addStudentQuestion(reqObjOne.body)
+        })
+
         fetch(`http://localhost:3001/questions`, reqObjOne)
         .then(resp => resp.json())
         .then(data => {
@@ -49,8 +55,6 @@ class AddQuestion extends Component {
             this.props.addQuestion(data.question)
             this.props.history.push('/teacher_dash')
         })
-    
-
     }
     
 
@@ -83,6 +87,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     addQuestion,
+    addStudentQuestion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

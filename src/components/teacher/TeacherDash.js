@@ -1,6 +1,8 @@
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { loadQuestions } from '../../actions/auth'
+import { teacherLoginSuccess } from '../../actions/auth'
 import TeacherQuestionContainer from './TeacherQuestionContainer'
 import { Button, Card, Container, Image, List, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
@@ -10,12 +12,33 @@ class TeacherDash extends Component {
         questions: []
     }
     
-    componentDidMount() {
-        if (!this.props.auth){
-            this.props.history.push('/login')
+    componentDidMount(){
+        const token = localStorage.getItem('myAppToken')
+    
+        if(!token) {
+          this.props.history.push('/login')
+        } else {
+          const reqObj = {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
           }
-
+        
+    
+          fetch('http://localhost:3001/teacher_auth', reqObj)
+          .then(resp => resp.json())
+          .then(data => {
+            if (data.error){
+              this.props.history.push('/login')
+            } else {
+              console.log('sadf------', data);
+              this.props.teacherLoginSuccess(data)
+            }
+         })
+        }
     }
+          
         
     renderQuestions = () => {
         console.log('props', this.props)
@@ -92,6 +115,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     loadQuestions,
+    teacherLoginSuccess
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeacherDash);

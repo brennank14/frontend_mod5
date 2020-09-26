@@ -1,6 +1,8 @@
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { loadStudentQuestions } from '../../actions/auth'
+import { studentLoginSuccess } from '../../actions/auth'
 import StudentQuestionContainer from './StudentQuestionContainer'
 
 
@@ -9,13 +11,37 @@ class StudentDash extends Component {
         studentQuestions: [],
     }
 
+    componentDidMount(){
+        const token = localStorage.getItem('myAppToken')
+    
+        if(!token) {
+          this.props.history.push('/login')
+        } else {
+          const reqObj = {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
+            
+          fetch('http://localhost:3001/student_auth', reqObj)
+          .then(resp => resp.json())
+          .then(data => {
+            if (data.error){
+              this.props.history.push('/login')
+            } else {
+              console.log('sadf------');
+              this.props.studentLoginSuccess(data)
+            }
+          })
+        }
+    }
+
         
     renderQuestions = () => {
-        console.log('props', this.props)
-        return this.props.auth.student.student_questions.map(q => (
-            console.log('question', q),
+        return this.props.auth.student_questions.map(q => (
             <StudentQuestionContainer
-                key={q.question.id}
+                key={q.id}
                 teacher_id={q.question.teacher_id}
                 name={q.question.name}
                 content={q.question.content}
@@ -26,9 +52,10 @@ class StudentDash extends Component {
     }
     
     render() {
+      console.log('props', this.props)
         return (
             <div>
-                <h1>Welcome, {this.props.auth.student.name}</h1>
+                <h1>Welcome, {this.props.auth.name}</h1>
                 <h2>Assignments:</h2>
                 <div className="ui items" >{this.renderQuestions()}</div>
             </div>
@@ -44,6 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     loadStudentQuestions,
+    studentLoginSuccess
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDash);
