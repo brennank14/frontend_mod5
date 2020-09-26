@@ -41,7 +41,7 @@ class LoginPage extends Component {
         }
         
         if (this.state.user_type === "teacher"){
-            fetch('http://localhost:3001/api/v1/teacher_auth', reqObj)
+            fetch('http://localhost:3001/teacher_auth', reqObj)
             .then(res => res.json())
             .then(data => {
             if (data.error) {
@@ -56,7 +56,7 @@ class LoginPage extends Component {
         })
 
         } else if (this.state.user_type === "student") {
-            fetch('http://localhost:3001/api/v1/student_auth', reqObjTwo)
+            fetch('http://localhost:3001/student_auth', reqObjTwo)
             .then(res => res.json())
             .then(data => {
             if (data.error) {

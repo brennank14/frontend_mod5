@@ -25,15 +25,14 @@ class TeacherDash extends Component {
             }
           }
         
-    
+     
           fetch('http://localhost:3001/teacher_auth', reqObj)
           .then(resp => resp.json())
           .then(data => {
             if (data.error){
               this.props.history.push('/login')
             } else {
-              console.log('sadf------', data);
-              this.props.teacherLoginSuccess(data)
+              this.props.teacherLoginSuccess(data.teacher.teacher)
             }
          })
         }
@@ -80,6 +79,9 @@ class TeacherDash extends Component {
 
     
     render() {
+        if (!this.props.auth){
+            return <h4>loading...</h4>
+        }
         return (
             <div>
                 <Container>

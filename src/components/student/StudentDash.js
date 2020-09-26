@@ -30,8 +30,7 @@ class StudentDash extends Component {
             if (data.error){
               this.props.history.push('/login')
             } else {
-              console.log('sadf------');
-              this.props.studentLoginSuccess(data)
+              this.props.studentLoginSuccess(data.student.student)
             }
           })
         }
@@ -52,7 +51,9 @@ class StudentDash extends Component {
     }
     
     render() {
-      console.log('props', this.props)
+      if (!this.props.auth){
+        return <h4>loading...</h4>
+    }
         return (
             <div>
                 <h1>Welcome, {this.props.auth.name}</h1>
