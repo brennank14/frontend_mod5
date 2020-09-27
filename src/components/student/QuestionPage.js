@@ -7,9 +7,9 @@ import { answerQuestion } from '../../actions/auth'
 class QuestionPage extends Component {
     state = {
         question: this.props.question,
-        answer: this.state.answer,
-        grade: this.state.grade,
-        feedback: this.state.feedback,
+        answer: '',
+        grade: null,
+        feedback: '',
         studentQuestionId: null
     }
     
@@ -19,15 +19,17 @@ class QuestionPage extends Component {
             method: "GET",
             headers: {
               "access-control-allow-origin" : "*",
-              "Content-type": "application/json"
+              "Content-type": "application/json",
+              Authorization: `Bearer <token>`
             }})
     
         .then(resp => resp.json())
         .then(data => {
+            console.log('data', data)
            this.setState({question: data.question})          
         })
 
-        const question = this.props.auth.student.student_questions.filter(q => (q.question_id == this.props.match.params.id))
+        const question = this.props.auth.student_questions.filter(q => (q.question_id == this.props.match.params.id))
         this.setState({studentQuestionId: question[0].id}) 
 
         
