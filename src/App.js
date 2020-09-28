@@ -18,9 +18,9 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <Container class='ggbContainer'>
+      {/* <Container class='ggbContainer'>
           <div id="ggb-element"></div> 
-      </Container>
+      </Container> */}
       
       <Switch>
         <Route exact path='/login' component={LoginPage} />

@@ -22,10 +22,17 @@
 #ggb-element {
   position: fixed;
   bottom: 0px;
+  top: 100px;
 }
 
 .ggbContainer{
   margin-top: 15px;
+}
+
+.ui-card {
+  margin-top: 25px;
+  margin-bottom: 25px;
+
 }
 
 
