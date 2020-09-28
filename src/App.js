@@ -9,15 +9,14 @@ import StudentDash from './components/student/StudentDash';
 import QuestionPage from './components/student/QuestionPage';
 import { Switch, Route } from 'react-router-dom'
 import { Header } from 'semantic-ui-react'
+import Navbar from './components/login/Navbar';
 
 const App = () => {
 
 
   return (
     <div className="App">
-      <Header as='h1' block>
-        Title
-      </Header>
+      <Navbar icon="paint brush" title="title" description="out app" />
       <Switch>
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/student_dash' component={StudentDash} />

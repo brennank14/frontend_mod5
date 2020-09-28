@@ -27,6 +27,12 @@ export const studentLoginSuccess = (student) => {
     }
 }
 
+export const logoutSuccess = () => {
+    return {
+      type: 'LOGOUT_SUCCESS'
+    }
+  }
+
 export const loadStudentQuestions = student_questions => {
     return {
         type: "LOAD_STUDENT_QUESTIONS",

@@ -25,7 +25,6 @@ class QuestionPage extends Component {
     
         .then(resp => resp.json())
         .then(data => {
-            console.log('data', data)
            this.setState({question: data.question})          
         })
 

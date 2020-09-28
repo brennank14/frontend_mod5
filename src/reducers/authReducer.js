@@ -6,6 +6,9 @@ export default function authReducer(state = null, action)
         
         case "TEACHER_LOGIN_SUCCESS":
             return action.teacher
+            
+        case 'LOGOUT_SUCCESS':
+            return null
 
         case "ADD_QUESTION":
             return {...state, questions: [...state.questions, action.question]};

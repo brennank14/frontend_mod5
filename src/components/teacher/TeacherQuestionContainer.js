@@ -41,10 +41,10 @@ class TeacherQuestionContainer extends Component {
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='ui two buttons'>
-                                <Button basic color='green'>
+                                <Button color='green'>
                                     Edit
                                 </Button>
-                                <Button basic color='red' onClick={this.handleDelete}>
+                                <Button color='red' onClick={this.handleDelete}>
                                     Delete
                                 </Button>
                                 </div>
