@@ -71,16 +71,14 @@ class QuestionPage extends Component {
             <div> 
                 
                    <Container>
-                   <Header as='h1' textAlign='left'>Question Name</Header>
-                   <div id="ggb-element"></div> 
+                       <br/>
+                   <Header as='h1' textAlign='left'>{this.state.question.name}</Header>
                          <br/>
                    <Grid columns={2} divided>
                      <Grid.Row stretched>
                      <Grid.Column width={7}>
                          <Segment>
-                             <h3>{this.state.question.name}</h3>
                              <h4>{this.state.question.content}</h4>
-
                          </Segment>
                      </Grid.Column>
                      <Grid.Column width={9}>
@@ -107,6 +105,8 @@ class QuestionPage extends Component {
                      </Grid.Column>
                      </Grid.Row>
                  </Grid>
+                 <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+                 <div id="ggb-element"></div> 
                  <br/>
                  </Container>
              </div>

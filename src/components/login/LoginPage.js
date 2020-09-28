@@ -74,6 +74,7 @@ class LoginPage extends Component {
     render() {
         return (
             <div class="ui container">
+                <br/>
                 <h2>Login to View Dashboard</h2>
                 {this.state.error ? <h3 style={{color: 'white', backgroundColor: 'red'}}>{this.state.error}</h3> : null}
                 <form onSubmit={this.handleSubmit}>
@@ -109,7 +110,6 @@ class LoginPage extends Component {
                 <br/>
                 <br/>
                 <br/>
-                <div id="ggb-element"></div>
                 </div>
     )
   }

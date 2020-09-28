@@ -85,6 +85,7 @@ class TeacherDash extends Component {
         return (
             <div>
                 <Container>
+                    < br/>
                 <h1>Welcome, {this.props.auth.name}</h1>
                 <div id='listHeading'>
                      <button class="ui button"><Link to="/add_question">Add New Question</Link></button>
@@ -98,6 +99,7 @@ class TeacherDash extends Component {
                             <div className="ui items" >{this.renderQuestions()}</div>
                         </Grid.Column>
                         <Grid.Column width={3}>
+                        <h2>Student Profiles</h2>
                             <div className="ui items" >{this.renderStudents()}</div>
                         </Grid.Column>
                     </Grid>

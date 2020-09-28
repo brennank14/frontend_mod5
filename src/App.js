@@ -10,13 +10,18 @@ import QuestionPage from './components/student/QuestionPage';
 import { Switch, Route } from 'react-router-dom'
 import { Header } from 'semantic-ui-react'
 import Navbar from './components/login/Navbar';
+import { Container } from 'semantic-ui-react'
 
 const App = () => {
 
 
   return (
     <div className="App">
-      <Navbar icon="paint brush" title="title" description="out app" />
+      <Navbar />
+      <Container class='ggbContainer'>
+          <div id="ggb-element"></div> 
+      </Container>
+      
       <Switch>
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/student_dash' component={StudentDash} />
@@ -27,6 +32,7 @@ const App = () => {
         <Route exact path='/view_student/:student_id/question/:question_id' component={ViewStudentAnswer} />
         <Route exact path='/' component={LoginPage} />
       </Switch>
+      
     </div>
   );
 };

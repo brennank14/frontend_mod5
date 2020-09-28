@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, Container, Image } from 'semantic-ui-react'
+import { Button, Card, Container, Image, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { deleteQuestion } from '../../actions/auth'
@@ -27,7 +27,7 @@ class TeacherQuestionContainer extends Component {
             <div>
                 <Container>
                     <Card.Group >
-                        <Card class="ui card">
+                        <Card fluid class="ui card">
                             <Card.Content>
                                 <Image
                                 floated='right'
@@ -40,14 +40,12 @@ class TeacherQuestionContainer extends Component {
                                 </Card.Description>
                             </Card.Content>
                             <Card.Content extra>
-                                <div className='ui two buttons'>
-                                <Button color='green'>
-                                    Edit
-                                </Button>
-                                <Button color='red' onClick={this.handleDelete}>
+                                {/* <div className='ui button'> */}
+                                <Button color='red' icon="trash alternate outline" onClick={this.handleDelete}>
+                                <Icon name="trash alternate outline" />
                                     Delete
                                 </Button>
-                                </div>
+                                {/* </div> */}
                             </Card.Content>
                         </Card>
                     </Card.Group>

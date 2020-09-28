@@ -19,4 +19,13 @@
   color: #61dafb;
 }
 
+#ggb-element {
+  position: fixed;
+  bottom: 0px;
+}
+
+.ggbContainer{
+  margin-top: 15px;
+}
+
 

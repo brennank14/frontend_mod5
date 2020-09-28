@@ -29,16 +29,18 @@
     <title>React App</title>
   </head>
   <body>
+    <div id="root"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script src="https://www.geogebra.org/apps/deployggb.js"></script>
     <script>  
-      var ggbApp = new GGBApplet({"appName": "geometry", "width": 900, "height": 700, "showToolBar": true, "showAlgebraInput": true, "showMenuBar": true }, true);
+      var ggbApp = new GGBApplet({"appName": "geometry", "width": 900, "height": 700, "showToolBar": true, "showAlgebraInput": true, "showMenuBar": true, "useBrowserForJS": true, "isRenderGGBElementEnabled": true, 'showMenuBar': true, 'showResetIcon': true}, true);
       window.addEventListener("load", function() { 
           ggbApp.inject('ggb-element');
       });
       
+      
   </script>
-    <div id="root"></div>
+    
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
