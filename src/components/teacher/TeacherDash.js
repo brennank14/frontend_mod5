@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { loadQuestions } from '../../actions/auth'
 import { teacherLoginSuccess } from '../../actions/auth'
 import TeacherQuestionContainer from './TeacherQuestionContainer'
-import { Button, Card, Container, Image, List, Grid } from 'semantic-ui-react'
+import { Button, Divider, Container, Image, List, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class TeacherDash extends Component {
@@ -90,6 +90,8 @@ class TeacherDash extends Component {
                 <div id='listHeading'>
                      <button class="ui button"><Link to="/add_question">Add New Question</Link></button>
                 </div>
+                <br/>
+                <Divider fitted />
                 <h2>Assignments:</h2>
                 </Container>
                 <br/>

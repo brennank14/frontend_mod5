@@ -17,12 +17,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar />
-      
-      {/* <Container class='ggbContainer'>
-          <div id="ggb-element"></div> 
-      </Container> */}
-      
+      <Navbar />      
       <Switch>
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/student_dash' component={StudentDash} />

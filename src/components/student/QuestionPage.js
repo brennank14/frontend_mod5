@@ -82,17 +82,16 @@ class QuestionPage extends Component {
                         <Segment>
                              <h4>{this.state.question.content}</h4>
                         </Segment>
-                        <Segment>Answer:  
+                        <Segment><h4>Answer:</h4>  
                             <Form onSubmit={this.handleSubmit}>
-                                <TextArea type='text' value={this.state.answer} name='answer' onChange={this.handleChange} />
-                                <br/>
+                                <TextArea id='text-area' type='text' value={this.state.answer} name='answer' onChange={this.handleChange} />
                                 <Button type='submit'>Submit</Button>
                             </Form>
                         </Segment>
-                        <Segment>Feedback
+                        <Segment><h4>Feedback:</h4>
                             <Form.Input fluid value={this.state.feedback} readOnly />
                         </Segment>
-                        <Segment>Grade
+                        <Segment><h4>Grade:</h4>
                             <Form.Input fluid value={this.state.grade} readOnly />
                         </Segment>
                      </Grid.Column>

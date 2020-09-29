@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { loadStudentQuestions } from '../../actions/auth'
 import { studentLoginSuccess } from '../../actions/auth'
 import StudentQuestionContainer from './StudentQuestionContainer'
-import { Container } from 'semantic-ui-react'
+import { Container, Divider } from 'semantic-ui-react'
 
 
 class StudentDash extends Component {
@@ -60,6 +60,7 @@ class StudentDash extends Component {
             <div>
               <Container>
                 <h1>Welcome, {this.props.auth.name}</h1>
+                <Divider fitted />
                 <h2>Assignments:</h2>
                 <div className="ui items" >{this.renderQuestions()}</div>
                 </Container>
