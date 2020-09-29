@@ -9,11 +9,11 @@ class StudentQuestionContainer extends Component {
     render() {
         return (
             <div>
-                <Container>
+                {/* <Container> */}
                 <Link to={`/question/${this.props.id}`} >
-                <Card.Group>
+                {/* <Card.Group> */}
                     
-                    <Card fluid color='blue' class="ui card" onClick={this.handleClick}>
+                    <Card id='card' color='blue' class="ui card" onClick={this.handleClick}>
                         <Card.Content>
                             <Image
                             floated='right'
@@ -29,9 +29,9 @@ class StudentQuestionContainer extends Component {
                         </Card.Content>
                         </Card>
                         
-                    </Card.Group>
+                    {/* </Card.Group> */}
                     </Link>
-                </Container>
+                {/* </Container> */}
             </div>
         );
     }

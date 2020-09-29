@@ -31,20 +31,20 @@ class TeacherQuestionContainer extends Component {
                             <Card.Content>
                                 <Image
                                 floated='right'
-                                size='small'
+                                size='tiny'
                                 src= "https://www.clipartmax.com/png/middle/146-1466348_math-icon-design-png.png"
                                 />
                                 <Header as='h2' color='black'>{this.props.name}</Header>
-                                <Card.Description>
+                                <Card.Description id='content'>
                                 {this.props.content}
                                 </Card.Description>
                             </Card.Content>
                             <Card.Content extra>
-                                <Button color='red' icon="trash alternate outline" onClick={this.handleDelete}>
+                                <Button size='small' inverted color='red' floated='right' icon="trash alternate outline" onClick={this.handleDelete}>
                                 <Icon name="trash alternate outline" />
                                     Delete
                                 </Button>
-                                {/* </div> */}
+                        
                             </Card.Content>
                         </Card>
                     </Card.Group>

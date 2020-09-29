@@ -73,7 +73,6 @@ class LoginPage extends Component {
             })
         }}
 
-
     
     render() {
     const userOptions = [
@@ -99,12 +98,12 @@ class LoginPage extends Component {
                     <br/>
                     <div class="ui focus input">
                     <select 
-                        class="ui focus input"
                         fluid
                         value={this.state.user_type} 
                         name="user_type"
                         onChange={this.handleChange}
                         placeholder='User Type' 
+                        style={{fontSize: '13px', padding: '10px', color: '#86898E'}}
                         >
                         <option value="none">User Type</option>
                         <option value="teacher">Teacher</option>
@@ -123,6 +122,18 @@ class LoginPage extends Component {
     )
   }
 }           
+
+
+
+
+
+                                            
+
+                                        
+
+
+
+
 
 
 const mapDispatchToProps = {
