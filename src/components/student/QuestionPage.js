@@ -14,7 +14,9 @@ class QuestionPage extends Component {
     }
     
     componentDidMount() {
-
+        //var ggbApp = new GGBApplet({"appName": "geometry", "width": 900, "height": 700, "showToolBar": true, "showAlgebraInput": true, "showMenuBar": true, "useBrowserForJS": true, "isRenderGGBElementEnabled": true, 'showMenuBar': true, 'showResetIcon': true}, true);
+      
+        
         fetch(`http://localhost:3001/questions/${this.props.match.params.id}`, {
             method: "GET",
             headers: {
@@ -25,7 +27,8 @@ class QuestionPage extends Component {
     
         .then(resp => resp.json())
         .then(data => {
-           this.setState({question: data.question})          
+           this.setState({question: data.question})   
+           window.ggbApp.inject('ggb-element');       
         })
 
         const question = this.props.auth.student_questions.filter(q => (q.question_id == this.props.match.params.id))

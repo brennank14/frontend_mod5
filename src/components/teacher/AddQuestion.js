@@ -62,7 +62,9 @@ class AddQuestion extends Component {
     render() {
         return (
             <div>
+                <Container>
                 <h1>Add Question Page</h1>
+                </Container>
                 <Container>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>

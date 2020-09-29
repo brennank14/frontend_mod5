@@ -22,7 +22,7 @@
 #ggb-element {
   position: fixed;
   bottom: 0px;
-  top: 100px;
+  top: 400px;
 }
 
 .ggbContainer{
@@ -32,7 +32,12 @@
 .ui-card {
   margin-top: 25px;
   margin-bottom: 25px;
+  display: inline-block;
+}
 
+#title{
+  padding-top: 12px;
+  text-align: center;
 }
 
 

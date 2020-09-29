@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Container, Image, Checkbox } from 'semantic-ui-react'
+import { Card, Container, Image, Checkbox, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import {  connect } from 'react-redux'
 
@@ -13,23 +13,23 @@ class StudentQuestionContainer extends Component {
                 <Container>
 
                 <Card.Group>
-                    <Link to={`/question/${this.props.id}`} >
-                    <Card fluid class="ui card">
+                    {/* <Link to={`/question/${this.props.id}`} > */}
+                    <Card fluid color='blue' class="ui card">
                         <Card.Content>
                             <Image
                             floated='right'
                             size='mini'
                             src= "https://image.shutterstock.com/image-vector/fun-cute-vector-childrens-math-260nw-215315230.jpg"
                             />
-                            <Card.Header>
+                            <Header as='h2'>
                             {this.props.name}
-                            </Card.Header>
+                            </Header>
                             <Card.Description>
                             {this.props.content}
                             </Card.Description>
                         </Card.Content>
                         </Card>
-                        </Link>
+                        {/* </Link> */}
                     </Card.Group>
                 </Container>
             </div>

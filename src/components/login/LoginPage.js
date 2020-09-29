@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { teacherLoginSuccess } from '../../actions/auth'
 import { studentLoginSuccess } from '../../actions/auth'
+import { Form, Select } from 'semantic-ui-react'
 
 
 class LoginPage extends Component {
@@ -59,6 +60,7 @@ class LoginPage extends Component {
             fetch('http://localhost:3001/student_auth', reqObjTwo)
             .then(res => res.json())
             .then(data => {
+                console.log(data)
             if (data.error) {
                 this.setState({
                 error: data.error
@@ -70,14 +72,21 @@ class LoginPage extends Component {
             }
             })
         }}
+
+
     
     render() {
+    const userOptions = [
+        { key: 'u', text: 'User Type', value: '' },
+        { key: 't', text: 'Teacher', value: 'teacher' },
+        { key: 's', text: 'Student', value: 'student' },
+        ]
         return (
-            <div class="ui container">
-                <br/>
+            <div id='login' class="ui container">
+                
                 <h2>Login to View Dashboard</h2>
                 {this.state.error ? <h3 style={{color: 'white', backgroundColor: 'red'}}>{this.state.error}</h3> : null}
-                <form onSubmit={this.handleSubmit}>
+                <form class='ui-form' onSubmit={this.handleSubmit}>
                 <div class="ui focus input">
                 <input fluid onChange={this.handleChange} type='text' name='username' placeholder='Username' value={this.state.username} />
                 </div>

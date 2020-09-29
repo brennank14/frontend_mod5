@@ -105,7 +105,6 @@ class ViewStudentAnswer extends Component {
                          <Segment>Grade
                          <Form>
                              <Input type='text' value={this.state.grade} name='grade' onChange={this.handleChange} />
-                             <Form.Checkbox onCheck={this.handleChecked} label='Graded' />
                          </Form>
                          </Segment>
                      </Grid.Column>

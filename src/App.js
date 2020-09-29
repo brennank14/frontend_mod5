@@ -18,6 +18,7 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
+      
       {/* <Container class='ggbContainer'>
           <div id="ggb-element"></div> 
       </Container> */}

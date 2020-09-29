@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
-.ui.card {
-  display: inline-block
+#login{
+  text-align: center;
 }
+
+#welcome{
+  margin-left: 25px;
+}
+
