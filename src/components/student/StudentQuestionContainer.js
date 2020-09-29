@@ -4,22 +4,21 @@ import { Link } from 'react-router-dom'
 import {  connect } from 'react-redux'
 
 class StudentQuestionContainer extends Component {
-    
 
 
     render() {
         return (
             <div>
                 <Container>
-
+                <Link to={`/question/${this.props.id}`} >
                 <Card.Group>
-                    {/* <Link to={`/question/${this.props.id}`} > */}
-                    <Card fluid color='blue' class="ui card">
+                    
+                    <Card fluid color='blue' class="ui card" onClick={this.handleClick}>
                         <Card.Content>
                             <Image
                             floated='right'
-                            size='mini'
-                            src= "https://image.shutterstock.com/image-vector/fun-cute-vector-childrens-math-260nw-215315230.jpg"
+                            size='tiny'
+                                src= "https://www.clipartmax.com/png/middle/146-1466348_math-icon-design-png.png"
                             />
                             <Header as='h2'>
                             {this.props.name}
@@ -29,8 +28,9 @@ class StudentQuestionContainer extends Component {
                             </Card.Description>
                         </Card.Content>
                         </Card>
-                        {/* </Link> */}
+                        
                     </Card.Group>
+                    </Link>
                 </Container>
             </div>
         );

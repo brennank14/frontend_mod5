@@ -14,7 +14,6 @@ class QuestionPage extends Component {
     }
     
     componentDidMount() {
-        //var ggbApp = new GGBApplet({"appName": "geometry", "width": 900, "height": 700, "showToolBar": true, "showAlgebraInput": true, "showMenuBar": true, "useBrowserForJS": true, "isRenderGGBElementEnabled": true, 'showMenuBar': true, 'showResetIcon': true}, true);
       
         
         fetch(`http://localhost:3001/questions/${this.props.match.params.id}`, {
@@ -72,45 +71,37 @@ class QuestionPage extends Component {
         }
         return (
             <div> 
-                
                    <Container>
                        <br/>
                    <Header as='h1' textAlign='left'>{this.state.question.name}</Header>
                          <br/>
+                    <Container>
                    <Grid columns={2} divided>
                      <Grid.Row stretched>
-                     <Grid.Column width={7}>
-                         <Segment>
+                     <Grid.Column width={5}>
+                        <Segment>
                              <h4>{this.state.question.content}</h4>
-                         </Segment>
+                        </Segment>
+                        <Segment>Answer:  
+                            <Form onSubmit={this.handleSubmit}>
+                                <TextArea type='text' value={this.state.answer} name='answer' onChange={this.handleChange} />
+                                <br/>
+                                <Button type='submit'>Submit</Button>
+                            </Form>
+                        </Segment>
+                        <Segment>Feedback
+                            <Form.Input fluid value={this.state.feedback} readOnly />
+                        </Segment>
+                        <Segment>Grade
+                            <Form.Input fluid value={this.state.grade} readOnly />
+                        </Segment>
                      </Grid.Column>
-                     <Grid.Column width={9}>
-                         <Segment>Answer:  
-                         <Form onSubmit={this.handleSubmit}>
-                             <TextArea type='text' value={this.state.answer} name='answer' onChange={this.handleChange} />
-                             <br/>
-                             <Button type='submit'>Submit</Button>
-                         </Form>
-                             </Segment>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row stretched>
-                     <Grid.Column width={2}>
-                         <Segment>Grade
-                         <Form.Input fluid value={this.state.grade} readOnly />
-                         </Segment>
-                         
-                     </Grid.Column>
-                     <Grid.Column width={14}>
-                         <Segment>Feedback
-                         <Form.Input fluid value={this.state.feedback} readOnly />
-                         </Segment>
+                     <Grid.Column width={11}>
+                        <div id="ggb-element"></div>
                      </Grid.Column>
                      </Grid.Row>
-                 </Grid>
-                 <script src="https://www.geogebra.org/apps/deployggb.js"></script>
-                 <div id="ggb-element"></div> 
-                 <br/>
+                    </Grid>
+                    </Container>
                  </Container>
              </div>
         );
